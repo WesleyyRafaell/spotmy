@@ -4,11 +4,12 @@ import * as S from './styles'
 
 type ButtonProps = {
 	children: string
+	onPress(): void
 }
 
-const Button = ({ children }: ButtonProps) => {
+const Button = ({ children, ...props }: ButtonProps) => {
 	return (
-		<S.Wrapper>
+		<S.Wrapper {...props}>
 			<S.Text>{children}</S.Text>
 		</S.Wrapper>
 	)
