@@ -1,29 +1,23 @@
-import React from 'react'
-import axios from 'axios'
-import useSWR from 'swr'
+import React, { useContext, useState } from 'react'
+
 import Video from 'react-native-video'
-import { useNavigation } from '@react-navigation/native'
-import { NativeStackNavigationProp } from '@react-navigation/native-stack'
-import { RootStackParams } from '../../App'
 
 // components
 import Button from '../../components/Button'
 import Logo from '../../components/Logo'
 
 import * as S from './styles'
+import { AuthContext } from '../../context/authContext'
 
 const sourceVideo = 'http://d23dyxeqlo5psv.cloudfront.net/big_buck_bunny.mp4'
 
 const Login = () => {
-	const navigation = useNavigation<NativeStackNavigationProp<RootStackParams>>()
-	const { data, error } = useSWR('/api/user/123', async () => {
-		const result = await axios.get('https://swapi.dev/api/people')
-		return result.data
-	})
+	const { onLogin } = useContext(AuthContext)
 
-	if (!data) {
-		return <S.Text />
-	}
+	// const { data, error } = useSWR('/api/user/123', async () => {
+	// 	const result = await axios.get('https://swapi.dev/api/people')
+	// 	return result.data
+	// })
 
 	return (
 		<S.Wrapper>
@@ -31,11 +25,12 @@ const Login = () => {
 				<S.Box>
 					<Logo />
 					<S.Text>Discover new music</S.Text>
-					<Button onPress={() => navigation.navigate('Home')}>Log In</Button>
+
+					<Button onPress={onLogin}>Log In</Button>
 				</S.Box>
 			</S.Container>
 
-			<Video
+			{/* <Video
 				source={{
 					uri: sourceVideo
 				}}
@@ -45,7 +40,7 @@ const Login = () => {
 				resizeMode={'cover'}
 				rate={1.0}
 				ignoreSilentSwitch={'obey'}
-			/>
+			/> */}
 		</S.Wrapper>
 	)
 }
