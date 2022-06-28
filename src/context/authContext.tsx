@@ -40,6 +40,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
 			}
 
 			await setCookie('token', JSON.stringify(result.accessToken))
+			await setCookie('refreshtoken', JSON.stringify(result.refreshToken))
 
 			navigation.navigate('Home')
 
