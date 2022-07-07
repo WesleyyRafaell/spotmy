@@ -2,15 +2,16 @@ import React from 'react'
 
 import * as S from './styles'
 
-type ButtonProps = {
+export type ButtonProps = {
 	children: string
-	onPress(): void
+	onPress?: () => void
+	size?: 'large' | 'small'
 }
 
-const Button = ({ children, ...props }: ButtonProps) => {
+const Button = ({ children, size = 'large', ...props }: ButtonProps) => {
 	return (
-		<S.Wrapper {...props}>
-			<S.Text>{children}</S.Text>
+		<S.Wrapper size={size} {...props}>
+			<S.Text size={size}>{children}</S.Text>
 		</S.Wrapper>
 	)
 }

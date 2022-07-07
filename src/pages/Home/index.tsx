@@ -1,4 +1,5 @@
 import React from 'react'
+import SliderGroup from '../../components/SliderGroup'
 
 import { useFetch } from '../../hooks/useFetch'
 import { getUserInformation } from '../../services/loggedUserInformation'
@@ -10,7 +11,7 @@ const Home = () => {
 
 	return (
 		<S.Wrapper>
-			<S.Text>home</S.Text>
+			<SliderGroup title="My playlists" />
 			<S.Text>user: {data?.data.display_name}</S.Text>
 		</S.Wrapper>
 	)
