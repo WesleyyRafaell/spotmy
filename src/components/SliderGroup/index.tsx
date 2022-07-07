@@ -4,68 +4,35 @@ import Button from '../Button'
 import * as S from './styles'
 
 export type ItemGroup = {
+	id: string
 	imageUri: string
 	text: string
 }
 
 export type SliderGroupProps = {
 	title: string
-	SlideGroup: ItemGroup[]
+	slideGroup: ItemGroup[]
 }
 
-const SliderGroup = ({ title }: SliderGroupProps) => {
+const SliderGroup = ({ title, slideGroup }: SliderGroupProps) => {
 	return (
 		<S.Wrapper>
 			<S.Text>{title}</S.Text>
 			<S.ContainerScrool showsHorizontalScrollIndicator={false} horizontal>
-				<S.GroupBox>
-					<S.ImageBox
-						source={{
-							uri: 'https://reactnative.dev/img/tiny_logo.png'
-						}}
-					/>
-					<S.TextBox>Playlist 1</S.TextBox>
-				</S.GroupBox>
-				<S.GroupBox>
-					<S.ImageBox
-						source={{
-							uri: 'https://reactnative.dev/img/tiny_logo.png'
-						}}
-					/>
-					<S.TextBox>Playlist 1</S.TextBox>
-				</S.GroupBox>
-				<S.GroupBox>
-					<S.ImageBox
-						source={{
-							uri: 'https://reactnative.dev/img/tiny_logo.png'
-						}}
-					/>
-					<S.TextBox>Playlist 1</S.TextBox>
-				</S.GroupBox>
-				<S.GroupBox>
-					<S.ImageBox
-						source={{
-							uri: 'https://reactnative.dev/img/tiny_logo.png'
-						}}
-					/>
-					<S.TextBox>Playlist 1</S.TextBox>
-				</S.GroupBox>
-				<S.GroupBox>
-					<S.ImageBox
-						source={{
-							uri: 'https://reactnative.dev/img/tiny_logo.png'
-						}}
-					/>
-					<S.TextBox>Playlist 1</S.TextBox>
-				</S.GroupBox>
-				<S.GroupBox>
-					<S.ImageBox
-						source={{
-							uri: 'https://reactnative.dev/img/tiny_logo.png'
-						}}
-					/>
-					<S.TextBox>Playlist 1</S.TextBox>
-				</S.GroupBox>
+				{!!slideGroup && (
+					<>
+						{slideGroup.map((item: ItemGroup) => (
+							<S.GroupBox key={item.id}>
+								<S.ImageBox
+									source={{
+										uri: item.imageUri
+									}}
+								/>
+								<S.TextBox>{item.text}</S.TextBox>
+							</S.GroupBox>
+						))}
+					</>
+				)}
 			</S.ContainerScrool>
 			<S.ContainerButton>
 				<Button size="small">See more</Button>
